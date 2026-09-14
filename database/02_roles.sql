@@ -18,6 +18,7 @@ CREATE ROLE hd_app_admin NOLOGIN;
 -- ---------------------------------------------------------
 
 CREATE ROLE hd_api LOGIN NOINHERIT;
+ALTER ROLE hd_api WITH PASSWORD '******';
 
 -- ---------------------------------------------------------
 -- hd_api may temporarily assume business roles
