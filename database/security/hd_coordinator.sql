@@ -27,24 +27,14 @@ ON
     service_type,
     unavailability,
     beneficiary,
-    location
+    location,
+    intervention,
+    intervention_skill
 TO hd_coordinator;
 
-
--- =========================================================
--- INTERVENTION
--- =========================================================
-
-GRANT SELECT, INSERT, UPDATE ON intervention TO hd_coordinator;
 
 -- =========================================================
 -- ASSIGNMENT
 -- =========================================================
 
 GRANT SELECT, INSERT, UPDATE ON assignment TO hd_coordinator;
-
--- =========================================================
--- INTERVENTION SKILLS
--- =========================================================
-
-GRANT SELECT, INSERT, DELETE ON intervention_skill TO hd_coordinator;
