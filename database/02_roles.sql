@@ -17,7 +17,6 @@ CREATE ROLE hd_app_admin NOLOGIN;
 -- Technical roles
 -- ---------------------------------------------------------
 
-CREATE ROLE hd_db_owner NOLOGIN;
 CREATE ROLE hd_api LOGIN NOINHERIT;
 
 -- ---------------------------------------------------------
