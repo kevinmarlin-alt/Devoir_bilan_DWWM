@@ -24,7 +24,6 @@ ON
     employee_geographic_area,
     skill,
     geographic_area,
-    intervention_skill,
     service_type,
     unavailability,
     beneficiary,
