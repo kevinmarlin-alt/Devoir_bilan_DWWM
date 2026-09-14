@@ -20,7 +20,9 @@ GRANT SELECT
 ON
     skill,
     geographic_area,
-    service_type
+    service_type,
+    contract,
+    employee
 TO hd_sector_manager;
 
 
@@ -42,11 +44,6 @@ GRANT SELECT, INSERT, UPDATE ON beneficiary TO hd_sector_manager;
 
 GRANT SELECT, INSERT, UPDATE ON location TO hd_sector_manager;
 
--- =========================================================
--- CONTRACT
--- =========================================================
-
-GRANT SELECT, INSERT, UPDATE ON contract TO hd_sector_manager;
 
 -- =========================================================
 -- EMPLOYEE SKILL
@@ -71,9 +68,3 @@ GRANT SELECT, INSERT, DELETE ON intervention_skill TO hd_sector_manager;
 -- =========================================================
 
 GRANT SELECT, UPDATE ON change_request TO hd_sector_manager;
-
--- =========================================================
--- EMPLOYEE
--- =========================================================
-
-GRANT SELECT, UPDATE ON employee TO hd_sector_manager;

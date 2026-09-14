@@ -37,3 +37,17 @@ GRANT SELECT ON app_role TO hd_app_admin;
 -- =========================================================
 
 GRANT SELECT, INSERT, DELETE ON user_account_app_role TO hd_app_admin;
+
+
+-- =========================================================
+-- CONTRACT
+-- =========================================================
+
+GRANT SELECT, INSERT, UPDATE ON contract TO hd_app_admin;
+
+
+-- =========================================================
+-- EMPLOYEE
+-- =========================================================
+
+GRANT SELECT, UPDATE ON employee TO hd_app_admin;
