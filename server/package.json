@@ -11,6 +11,13 @@
     "build": "tsc",
     "start": "node dist/server.js",
     "typecheck": "tsc --noEmit",
+    "db:clear": "prisma db execute --file ../database/seeds/00_reset_data.sql",
+    "db:seed:references": "prisma db execute --file ../database/seeds/01_reference_data.sql",
+    "db:seed:users": "prisma db execute --file ../database/seeds/02_users_employees.sql",
+    "db:seed:business": "prisma db execute --file ../database/seeds/03_business_data.sql",
+    "db:seed:planning": "prisma db execute --file ../database/seeds/04_planning_data.sql",
+    "db:seed": "npm run db:seed:references && npm run db:seed:users && npm run db:seed:business && npm run db:seed:planning",
+    "db:reset": "npm run db:clear && npm run db:seed",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
