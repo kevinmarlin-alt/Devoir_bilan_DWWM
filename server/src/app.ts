@@ -1,10 +1,14 @@
 import fastify from "fastify";
 import { prisma } from "./plugings/prisma.plugin.js";
+import { registrerErrorHandler } from "./shared/error-handler.js";
+import { AppError } from "./shared/app-error.js";
 
 export function buildApp() {
     const app = fastify({
         logger: true
     });
+
+    registrerErrorHandler(app);
 
     app.get('/health', async () => {
         return {
@@ -20,6 +24,14 @@ export function buildApp() {
             database: 'connected'
         }
     })
+
+    app.get("/test-error", async () => {
+        throw new AppError(
+            "Erreur de test",
+            409,
+            "TEST_ERROR"
+        );
+    });
 
     return app;
 }
