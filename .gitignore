@@ -7,5 +7,14 @@ node_modules/
 # Build
 dist/
 
+# Agents
+.agents/
+.claude/
+.windsurf/
+
 # Other
 .DS_Store
+
+# Prisma ORM
+/src/generated/prisma
+skills-lock.json
