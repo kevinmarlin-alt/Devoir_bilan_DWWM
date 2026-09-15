@@ -1,0 +1,12 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "Server backend to the application Harmonie Domicile (Student project DWWM)",
+  "license": "ISC",
+  "author": "Kevin Marlin",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
