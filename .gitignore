@@ -1,5 +1,11 @@
 # Environement
 .env
 
+# Node.js
+node_modules/
+
+# Build
+dist/
+
 # Other
 .DS_Store
