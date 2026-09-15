@@ -2,7 +2,10 @@
 .env
 
 # Node.js
-node_modules
+node_modules/
+
+# Build
+dist/
 
 # Other
 .DS_Store
