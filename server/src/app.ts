@@ -1,14 +1,10 @@
-import fastify from "fastify";
+import fastify, { type FastifyServerOptions } from "fastify";
 import { prisma } from "./plugings/prisma.plugin.js";
 import { registrerErrorHandler } from "./shared/error-handler.js";
 import { AppError } from "./shared/app-error.js";
 
-export function buildApp() {
-    const app = fastify({
-        logger: true
-    });
-
-    registrerErrorHandler(app);
+const App = (option: FastifyServerOptions) => {
+    const app = fastify(option);
 
     app.get('/health', async () => {
         return {
@@ -33,5 +29,9 @@ export function buildApp() {
         );
     });
 
+    registrerErrorHandler(app);
+
     return app;
 }
+
+export default App;
