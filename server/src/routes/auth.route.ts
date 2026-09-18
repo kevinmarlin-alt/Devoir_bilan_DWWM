@@ -1,5 +1,6 @@
 import type { FastifyInstance } from "fastify";
 import authController from "../controllers/auth.controller.js"
+import { authenticate } from "../hooks/auth.hook.js"
 
 const loginSchema = {
     body: {
@@ -24,7 +25,11 @@ const loginSchema = {
 const authRouter = async (app: FastifyInstance) => {
     app.post("/login", { schema: loginSchema }, authController.handleLogin)
     app.post("/logout", authController.handleLogout)
-    
+    app.get('/user', 
+        { 
+            preHandler: [authenticate] 
+        }, authController.handleConnectedUser
+    )
 };
 
 

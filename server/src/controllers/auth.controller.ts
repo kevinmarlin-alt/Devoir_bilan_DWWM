@@ -48,7 +48,14 @@ const handleLogout = async (request: FastifyRequest, reply: FastifyReply) => {
     reply.status(204).send();
 };
 
+const handleConnectedUser = async (request: FastifyRequest, reply: FastifyReply) => {
+    return reply.status(200).send({
+        user: request.user
+    })
+};
+
 export default {
     handleLogin,
-    handleLogout
+    handleLogout,
+    handleConnectedUser
 }; 
