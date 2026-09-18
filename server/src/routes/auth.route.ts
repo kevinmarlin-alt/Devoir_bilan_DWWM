@@ -24,7 +24,7 @@ const loginSchema = {
 const authRouter = async (app: FastifyInstance) => {
     app.post("/login", { schema: loginSchema }, authController.handleLogin)
     app.post("/logout", authController.handleLogout)
-    
+    app.get('/user', authController.handleConnectedUser)
 };
 
 
