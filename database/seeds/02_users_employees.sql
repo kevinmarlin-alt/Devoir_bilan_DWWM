@@ -19,12 +19,12 @@ INSERT INTO user_account (
     password_hash
 )
 VALUES
-    ('Alice', 'Martin', 'alice.martin@harmonie.test', 'DEV_HASH_TO_REPLACE'),
-    ('Karim', 'Benali', 'karim.benali@harmonie.test', 'DEV_HASH_TO_REPLACE'),
-    ('Léa', 'Moreau', 'lea.moreau@harmonie.test', 'DEV_HASH_TO_REPLACE'),
-    ('Claire', 'Dubois', 'claire.dubois@harmonie.test', 'DEV_HASH_TO_REPLACE'),
-    ('Sophie', 'Laurent', 'sophie.laurent@harmonie.test', 'DEV_HASH_TO_REPLACE'),
-    ('Alex', 'Admin', 'admin@harmonie.test', 'DEV_HASH_TO_REPLACE')
+    ('Alice', 'Martin', 'alice.martin@harmonie.test', '$2b$10$2rhVxJqayiay/YOpo/xixuY8XCBqd8WH7WTa9MK2wwze2mPnJOrkW'),
+    ('Karim', 'Benali', 'karim.benali@harmonie.test', '$2b$10$2rhVxJqayiay/YOpo/xixuY8XCBqd8WH7WTa9MK2wwze2mPnJOrkW'),
+    ('Léa', 'Moreau', 'lea.moreau@harmonie.test', '$2b$10$2rhVxJqayiay/YOpo/xixuY8XCBqd8WH7WTa9MK2wwze2mPnJOrkW'),
+    ('Claire', 'Dubois', 'claire.dubois@harmonie.test', '$2b$10$2rhVxJqayiay/YOpo/xixuY8XCBqd8WH7WTa9MK2wwze2mPnJOrkW'),
+    ('Sophie', 'Laurent', 'sophie.laurent@harmonie.test', '$2b$10$2rhVxJqayiay/YOpo/xixuY8XCBqd8WH7WTa9MK2wwze2mPnJOrkW'),
+    ('Alex', 'Admin', 'admin@harmonie.test', '$2b$10$2rhVxJqayiay/YOpo/xixuY8XCBqd8WH7WTa9MK2wwze2mPnJOrkW')
 ON CONFLICT (email) DO NOTHING;
 
 
