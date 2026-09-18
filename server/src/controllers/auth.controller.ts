@@ -37,6 +37,18 @@ const handleLogin = async (request: AuthLoginRequest, reply: FastifyReply) => {
     })
 };
 
+const handleLogout = async (request: FastifyRequest, reply: FastifyReply) => {
+    reply.clearCookie("hd_token", {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === "production",
+        sameSite: "strict",
+        path: "/"
+    });
+
+    reply.status(204).send();
+};
+
 export default {
-    handleLogin
+    handleLogin,
+    handleLogout
 }; 
