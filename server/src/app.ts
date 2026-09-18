@@ -22,7 +22,7 @@ const App = (option: FastifyServerOptions) => {
         secret: jwtSecret,
         cookie: {
             cookieName: "hd_token",
-            signed: true
+            signed: false
         } 
     });
 
