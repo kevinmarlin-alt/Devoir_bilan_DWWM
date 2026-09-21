@@ -5,190 +5,185 @@
         Au service d'un quotidien<br>
         plus serein
     </p>
-    <section class="login-gape__intro intro-panel">
-        <header class="intro-panel__header">
-            <img
-                class="intro-panel__logo"
-                src="/assets/logo.png" 
-                alt="Harmonie Domicile"
-                width="800"
-                height="270"
-
-            />
-            <p class="intro-panel__tagline">Portail professionnel</p>
-        </header>
-
-        <div class="intro-panel__content">
-            <h1 class="intro-panel__title">
-                Des équipes engagées pour un meilleur accompagnement
-            </h1>
-
-            <p class="intro-panel__description">
-                Accédez à vos outils métiers et facilitez la cpprdination des services à domicile.
-            </p>
-
-            <ul class="intro-panel__features">
-                <li class="intro-panel__feature">
-                    <span class="intro-panel__feature-icon"></span>
-                    <div class="intro-panel__feature-content">
-                        <strong class="intro-panel__feature-title">
-                            Gestions des interventions
-                        </strong>
-                        <span class="intro-panel__feature-description">
-                            Planification et suivi en temps réel
-                        </span>
+    <div class="panel-container">
+        <section class="login-page__auth auth-panel">
+            <div class="auth-panel__card">
+                <header class="auth-panel__header">
+                    <h1 class="auth-panel__title">
+                        Connexion à l'espace professionnel
+                    </h1>
+                    <p class="auth-panel__description">
+                        Accédez à la plateforme Harmonie Domicile
+                    </p>
+                </header>
+                <form class="auth-panel__form login-form">
+                    <div class="login-form__field">
+                        <label for="email" class="login-form__label">
+                            Adresse e-mail professionnelle
+                        </label>
+                        <div class="login-form__control">
+                            <span class="login-form__icon">✉️</span>
+                            <input
+                                type="email"
+                                name="email"
+                                id="email"
+                                class="login-form__input"
+                                autocomplete="email"
+                                placeholder="nom@harmonie-domicile.fr"
+                            />
+                        </div>
+                        <p class="login-form__error"></p>
                     </div>
-                </li>
-                <li class="intro-panel__feature">
-                    <span class="intro-panel__feature-icon"></span>
-                    <div class="intro-panel__feature-content">
-                        <strong class="intro-panel__feature-title">
-                            Suivi des bénéficiaires
-                        </strong>
-                        <span class="intro-panel__feature-description">
-                            Information centralisées et à jour
-                        </span>
+                    <div class="login-form__field">
+                        <label for="password" class="login-form__label">
+                            Mot de passe
+                        </label>
+                        <div class="login-form__control">
+                            <span class="login-form__icon">🔒</span>
+                            <input
+                                type="password"
+                                name="password"
+                                id="password"
+                                class="login-form__input"
+                                autocomplete="current-password"
+                                placeholder="Votre mot de passe"
+                            />
+                            <button
+                                class="login-form__password-toggle"
+                                type="button"
+                                aria-label="Afficher le mot de passe"
+                            >
+                            👁️
+                            </button>
+                        </div>
+                        <p class="login-form__error"></p>
                     </div>
-                </li>
-                <li class="intro-panel__feature">
-                    <span class="intro-panel__feature-icon"></span>
-                    <div class="intro-panel__feature-content">
-                        <strong class="intro-panel__feature-title">
-                            Coordination des équipes
-                        </strong>
-                        <span class="intro-panel__feature-description">
-                            Une organisation plus efficace
-                        </span>
-                    </div>
-                </li>
-                <li class="intro-panel__feature">
-                    <span class="intro-panel__feature-icon"></span>
-                    <div class="intro-panel__feature-content">
-                        <strong class="intro-panel__feature-title">
-                            Accès à vos outils métiers
-                        </strong>
-                        <span class="intro-panel__feature-description">
-                            Tout votre environnement de travail
-                        </span>
-                    </div>
-                </li>
-            </ul>
-
-        </div>
-        
-    </section>
-
-    <section class="login-page__auth auth-panel">
-        <div class="auth-panel__card">
-            <header class="auth-panel__header">
-                <h2 class="auth-panel__title">
-                    Connexion à l'espace professionnel
-                </h2>
-                <p class="auth-panel__description">
-                    Accédez à la plateforme Harmonie Domicile
-                </p>
-            </header>
-
-            <form class="auth-panel__form login-form">
-                <div class="login-form__field">
-                    <label for="email" class="login-form__label">
-                        Adresse e-mail professionnelle
-                    </label>
-                    <div class="login-form__control">
-                        <span class="login-form__icon">✉️</span>
-                        <input 
-                            type="email" 
-                            name="email" 
-                            id="email" 
-                            class="login-form__input"
-                            autocomplete="email"
-                            placeholder="nom@harmonie-domicile.fr"
-                        />
-                    </div>
-                    <p class="login-form__error"></p>
-                </div>
-
-                <div class="login-form__field">
-                    <label for="password" class="login-form__label">
-                        Mot de passe
-                    </label>
-                    <div class="login-form__control">
-                        <span class="login-form__icon">🔒</span>
-                        <input 
-                            type="password" 
-                            name="password" 
-                            id="password" 
-                            class="login-form__input"
-                            autocomplete="current-password"
-                            placeholder="Votre mot de passe"
-                        />
-                        <button 
-                            class="login-form__password-toggle"
-                            type="button"
-                            aria-label="Afficher le mot de passe"
+                    <div class="login-form__options">
+                        <label class="login-form__checkbox-label">
+                            <input
+                                type="checkbox"
+                                class="login-form__checkbox"
+                            />
+                            <span class="login-form__remember-label">
+                                Se souvenir de moi
+                            </span>
+                        </label>
+                        <a
+                            class="login-form__forgot-link"
+                            href="http://"
                         >
-                        👁️
-                        </button>
+                            Mot de passe oublié ?
+                        </a>
                     </div>
-                    <p class="login-form__error"></p>
-                </div>
-                <div class="login-form__options">
-                    <label class="login-form__checkbox-label">
-                        <input 
-                            type="checkbox" 
-                            class="login-form__checkbox"
-                        />
-                        <span class="login-form__remember-label">
-                            Se souvenir de moi
-                        </span>
-                    </label>
-                    <a 
-                        class="login-form__forgot-link"
-                        href="http://"
+                    <button
+                        class="login-form__submit"
+                        type="submit"
                     >
-                        Mot de passe oublié ?
-                    </a>
-                </div>
+                        <span class="login-form__submit-label">
+                            Se connecter
+                        </span>
+                        <span class="login-form__submit-icon">
+                            →
+                        </span>
+                    </button>
+                </form>
+                <hr class="auth-panel__hr"/>
+                <aside class="auth-panel__security-notice security-notice">
+                    <span class="security-notice__icon"></span>
+                    <div class="security-notice__content">
+                        <strong class="security-notice__title">
+                            Accès réservé au personnel autorisé
+                        </strong>
+                        <p class="security-notice__description">
+                            Connexion sécurisée · Données protégées
+                        </p>
+                    </div>
+                </aside>
+                <hr class="auth-panel__hr"/>
+                <footer class="auth-panel__support support-info">
+                    <span class="support-info__icon"></span>
+                    <div class="support-info__content">
+                        <strong class="support-info__title">
+                            Besoin d'aide ?
+                        </strong>
+                        <p class="support-info__description">
+                            Contectez l'administrateur ou le support interne.
+                        </p>
+                    </div>
+                </footer>
+        
+            </div>
+        </section>
+        <section class="login-gape__intro intro-panel">
+            <header class="intro-panel__header">
+                <img
+                    class="intro-panel__logo"
+                    src="/assets/logo.png"
+                    alt="Harmonie Domicile"
+                    width="800"
+                    height="270"
+                />
+                <p class="intro-panel__tagline">Portail professionnel</p>
+            </header>
+            <div class="intro-panel__content">
+                <h2 class="intro-panel__title">
+                    Des équipes engagées pour un meilleur accompagnement
+                </h2>
+                <p class="intro-panel__description">
+                    Accédez à vos outils métiers et facilitez la cpprdination des services à domicile.
+                </p>
+                <ul class="intro-panel__features">
+                    <li class="intro-panel__feature">
+                        <span class="intro-panel__feature-icon"></span>
+                        <div class="intro-panel__feature-content">
+                            <strong class="intro-panel__feature-title">
+                                Gestions des interventions
+                            </strong>
+                            <span class="intro-panel__feature-description">
+                                Planification et suivi en temps réel
+                            </span>
+                        </div>
+                    </li>
+                    <li class="intro-panel__feature">
+                        <span class="intro-panel__feature-icon"></span>
+                        <div class="intro-panel__feature-content">
+                            <strong class="intro-panel__feature-title">
+                                Suivi des bénéficiaires
+                            </strong>
+                            <span class="intro-panel__feature-description">
+                                Information centralisées et à jour
+                            </span>
+                        </div>
+                    </li>
+                    <li class="intro-panel__feature">
+                        <span class="intro-panel__feature-icon"></span>
+                        <div class="intro-panel__feature-content">
+                            <strong class="intro-panel__feature-title">
+                                Coordination des équipes
+                            </strong>
+                            <span class="intro-panel__feature-description">
+                                Une organisation plus efficace
+                            </span>
+                        </div>
+                    </li>
+                    <li class="intro-panel__feature">
+                        <span class="intro-panel__feature-icon"></span>
+                        <div class="intro-panel__feature-content">
+                            <strong class="intro-panel__feature-title">
+                                Accès à vos outils métiers
+                            </strong>
+                            <span class="intro-panel__feature-description">
+                                Tout votre environnement de travail
+                            </span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        
+        </section>
+    </div>
 
-                <button 
-                    class="login-form__submit"
-                    type="submit"
-                >
-                    <span class="login-form__submit-label">
-                        Se connecter
-                    </span>
-                    <span class="login-form__submit-icon">
-                        →
-                    </span>
-                </button>
-            </form>
-            <hr class="auth-panel__hr"/>
-            <aside class="auth-panel__security-notice security-notice">
-                <span class="security-notice__icon"></span>
-                <div class="security-notice__content">
-                    <strong class="security-notice__title">
-                        Accès réservé au personnel autorisé
-                    </strong>
-                    <p class="security-notice__description">
-                        Connexion sécurisée · Données protégées
-                    </p>
-                </div>
-            </aside>
-            <hr class="auth-panel__hr"/>
-            <footer class="auth-panel__support support-info">
-                <span class="support-info__icon"></span>
-                <div class="support-info__content">
-                    <strong class="support-info__title">
-                        Besoin d'aide ?
-                    </strong>
-                    <p class="support-info__description">
-                        Contectez l'administrateur ou le support interne.
-                    </p>
-                </div>
-            </footer>
-            
-        </div>
-    </section>
+
     <p class="login-page__slogan-bottom">
         Ensemble,<br/>
         au service des territoires
@@ -198,13 +193,17 @@
 </template>
 
 <style>
-/* @import url("/assets/styles/login.css"); */
-
 
 .login-page {
     background-color: #f2f4f1;
     position: relative;
     padding: 1rem;
+    
+}
+
+.panel-container {
+    display: flex;
+    flex-direction: column-reverse;
 }
 
 .login-page__slogan-top {
@@ -214,6 +213,7 @@
     text-align: end;
     text-transform: uppercase;
     font-size: .6rem;
+    text-wrap: initial;
 }
 
 .login-page__slogan-bottom {
@@ -259,7 +259,7 @@
     flex-direction: column;
     align-items: center;
     text-align: center;
-    min-width: 100px;
+    max-width: 5em;
 
 }
 
