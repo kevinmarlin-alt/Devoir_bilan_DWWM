@@ -251,10 +251,7 @@
 .intro-panel__features {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: auto;
     justify-items: center;
-    grid-auto-flow: column; 
-    overflow-x: auto;
 }
 
 .intro-panel__feature {
@@ -264,6 +261,10 @@
     text-align: center;
     min-width: 100px;
 
+}
+
+.intro-panel__feature:nth-child(n + 4) {
+    display: none;
 }
 
 .intro-panel__feature-icon {
