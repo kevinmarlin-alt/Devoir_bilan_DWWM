@@ -9,6 +9,7 @@
   "scripts": {
     "dev": "node --watch server.js",
     "start": "node server.js",
+    "db:check": "node src/database/check-database.js",
     "db:clear": "prisma db execute --file ../database/seeds/00_reset_data.sql",
     "db:seed:references": "prisma db execute --file ../database/seeds/01_reference_data.sql",
     "db:seed:users": "prisma db execute --file ../database/seeds/02_users_employees.sql",
