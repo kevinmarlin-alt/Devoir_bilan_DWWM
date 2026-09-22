@@ -1,3 +1,47 @@
+<script lang="ts" setup>
+import { useRouter } from 'vue-router';
+
+const router = useRouter()
+
+async function handleSubmit (e: Event) {
+    e.preventDefault();
+    const fornLogin = document.querySelector('.login-form') as HTMLFormElement
+    const data = new FormData(fornLogin)
+
+    const { email, password } = Object.fromEntries(data.entries());
+    const playload = {
+        email,
+        password
+    }
+
+    console.log(playload);
+    const response = await fetch('http://localhost:3000/api/auth/login', 
+    {
+        method: 'POST',
+        credentials: 'include',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(playload)
+    })
+
+    if(!response.ok) {
+        console.log(response.status)
+    }
+
+    const { user } = await response.json()
+
+    console.log(user)
+
+    router.push({ path: `${user.roles[0]}/dashboard`});
+    
+
+}
+
+
+
+</script>
+
 <template>
 
 <main class="login-page">
@@ -16,7 +60,11 @@
                         Accédez à la plateforme Harmonie Domicile
                     </p>
                 </header>
-                <form class="auth-panel__form login-form">
+                <form 
+                    class="auth-panel__form login-form"
+                    @submit="handleSubmit" 
+                    novalidate
+                >
                     <div class="login-form__field">
                         <label for="email" class="login-form__label">
                             Adresse e-mail professionnelle
@@ -30,6 +78,8 @@
                                 class="login-form__input"
                                 autocomplete="email"
                                 placeholder="nom@harmonie-domicile.fr"
+                                value="admin@harmonie.test"
+                                required
                             />
                         </div>
                         <p class="login-form__error"></p>
@@ -47,6 +97,8 @@
                                 class="login-form__input"
                                 autocomplete="current-password"
                                 placeholder="Votre mot de passe"
+                                value="Password123!"
+                                required
                             />
                             <button
                                 class="login-form__password-toggle"
