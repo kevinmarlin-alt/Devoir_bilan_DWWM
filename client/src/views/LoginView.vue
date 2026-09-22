@@ -1,39 +1,58 @@
 <script lang="ts" setup>
+import { ref } from 'vue';
 import { useRouter } from 'vue-router';
+import { AuthError, login } from '@/services/auth.service';
+import { getDashboardRouteName } from '@/router/role-route';
+import { useAuth } from '@/composables/useAuth';
 
 const router = useRouter()
 
+const { setUser } = useAuth();
+
+const loginError = ref<string | null>(null);
+const isSubmitting = ref(false);
+
 async function handleSubmit (e: Event) {
     e.preventDefault();
-    const fornLogin = document.querySelector('.login-form') as HTMLFormElement
-    const data = new FormData(fornLogin)
 
-    const { email, password } = Object.fromEntries(data.entries());
-    const playload = {
-        email,
-        password
+    if(isSubmitting.value) {
+        return;
     }
 
-    console.log(playload);
-    const response = await fetch('http://localhost:3000/api/auth/login', 
-    {
-        method: 'POST',
-        credentials: 'include',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(playload)
-    })
+    loginError.value = null;
+    isSubmitting.value = true;
 
-    if(!response.ok) {
-        console.log(response.status)
+    const form = e.currentTarget as HTMLFormElement;
+    const data = new FormData(form);
+
+    const credentials = {
+        email: String(data.get('email') ?? ''),
+        password: String(data.get('password') ?? ''),
     }
 
-    const { user } = await response.json()
+    try {
+        const user = await login(credentials);
 
-    console.log(user)
-
-    router.push({ path: `${user.roles[0]}/dashboard`});
+        setUser(user);
+    
+        const routeName = getDashboardRouteName(user.roles);
+    
+        if(!routeName) {
+            loginError.value = 'Aucun tableau de bord disponible pour cette utilisateur';
+            return;
+        }
+    
+        router.push({ name: routeName });
+        
+    } catch (error) {
+        if(error instanceof AuthError) {
+            loginError.value = error.message;
+            return;
+        }
+        loginError.value = 'Une erreur inattendue est survenue';
+    } finally {
+        isSubmitting.value = false;
+    }
     
 
 }
@@ -127,14 +146,26 @@ async function handleSubmit (e: Event) {
                             Mot de passe oublié ?
                         </a>
                     </div>
+                    <!-- Message d'erreur de connexion -->
+                    <p 
+                        v-if="loginError" 
+                        class="login-form__error" 
+                        role="alert"
+                    >   
+                        {{ loginError }}
+                    </p>
+
                     <button
                         class="login-form__submit"
                         type="submit"
+                        :disabled="isSubmitting"
                     >
                         <span class="login-form__submit-label">
-                            Se connecter
+                            {{ isSubmitting ? 'Connexion...' : 'Se connecter' }}
                         </span>
-                        <span class="login-form__submit-icon">
+                        <span 
+                            v-if="!isSubmitting"
+                            class="login-form__submit-icon">
                             →
                         </span>
                     </button>
@@ -423,12 +454,23 @@ async function handleSubmit (e: Event) {
     color: #4e614d;
 }
 
+.login-form__error {
+    margin-bottom: 1rem;
+    font-size: 0.85rem;
+    color: red;
+}
+
 .login-form__submit {
     background-color: #4e614d;
     color: #fff;
     padding: 15px 0;
     width: 100%;
     border-radius: 10px;
+}
+
+.login-form__submit:disabled {
+    cursor: not-allowed;
+    opacity: 0.7;
 }
 
 .login-form__submit:hover {

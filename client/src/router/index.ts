@@ -6,10 +6,17 @@ import EmployeeDashboardView from '@/views/employee/EmployeeDashboardView.vue';
 import CoordinatorDashboardView from '@/views/coordinator/CoordinatorDashboardView.vue';
 import ManagerDashboardView from '@/views/sector_manager/ManagerDashboardView.vue';
 import AdminDashboardView from '@/views/amdin/AdminDashboardView.vue';
-import { getAuthenticatedUser } from '@/services/auth.service';
 import type { Role } from '@/types/auth.type';
+import { useAuth } from '@/composables/useAuth';
 
-const applicationName = 'Harmonie Domicile'
+const applicationName = 'Harmonie Domicile';
+
+const dashboardRouteRole: Record<Role, string> = {
+    employee: 'employee-dashboard',
+    coordinator: 'coordinator-dashboard',
+    sector_manager: 'sector-manager-dashboard',
+    admin: 'admin-dashboard',
+}
 
 const router = createRouter({
     history: createWebHistory(),
@@ -53,7 +60,7 @@ const router = createRouter({
         {
             path: '/sector-manager',
             component: AppLayout,
-            meta: { requiresAuth: true, roles: ['sector-manager'] },
+            meta: { requiresAuth: true, roles: ['sector_manager'] },
             children: [
                 {
                     path: 'dashboard',
@@ -90,8 +97,10 @@ const router = createRouter({
     ]
 });
 
+const { initializeAuth } = useAuth();
+
 router.beforeEach(async (to) => {
-    const user = await getAuthenticatedUser()
+    const user = await initializeAuth()
     //console.log('beforeEach:', user, to.meta.requiresAuth)
     
 
@@ -107,7 +116,9 @@ router.beforeEach(async (to) => {
     //console.log('beforeEach - allowedRoles:', allowedRoles)
 
     if(allowedRoles) {
-        const hasAccess = user?.roles.some(role => allowedRoles.includes(role));
+        const hasAccess = user?.roles.some(
+            role => allowedRoles.includes(role)
+        );
         //console.log('beforeEach - hasAccess:', hasAccess)
 
         if(!hasAccess) {
