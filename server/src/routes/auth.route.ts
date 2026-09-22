@@ -1,6 +1,6 @@
 import type { FastifyInstance } from "fastify";
 import authController from "../controllers/auth.controller.js"
-import { authenticate } from "../hooks/auth.hook.js"
+import { authenticate, authorize } from "../hooks/auth.hook.js"
 
 const loginSchema = {
     body: {
