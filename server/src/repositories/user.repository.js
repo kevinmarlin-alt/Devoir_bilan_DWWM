@@ -2,23 +2,27 @@ import pool from "../database/database.js"
 
 export const findUserByEmail = async (email) => {
     const response = await pool.query(
-        `
-            SELECT * FROM user_account 
-            WHERE email = $1
-        `, [email]
+        `SELECT 
+            user_account_id,
+            email,
+            password_hash,
+            is_active
+        FROM user_account 
+        WHERE email = $1`
+        , [email]
     )
 
     if(response.rows.length === 0) {
         return null
     }
 
+    const user = response.rows[0];
+
     return {
-        userAccountId: response.rows[0].user_account_id,
-        fisrtname: response.rows[0].first_name,
-        lastname: response.rows[0].last_name,
-        email: response.rows[0].email,
-        passwordHash: response.rows[0].password_hash,
-        isActive: response.rows[0].is_active
+        userAccountId: user.user_account_id,
+        email: user.email,
+        passwordHash: user.password_hash,
+        isActive: user.is_active
     }
 
 }
