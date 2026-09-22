@@ -2,7 +2,7 @@ import 'dotenv/config';
 import pg from 'pg'
 const { Pool } = pg
 
-const connectionString = process.env.DATABASE_URL;
+const connectionString = process.env.DIRECT_URL;
 
 if(!connectionString) {
     throw new Error(
