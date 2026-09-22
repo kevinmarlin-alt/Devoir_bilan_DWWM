@@ -1,5 +1,14 @@
 import pool from "./database.js";
 
-const res = await pool.query('SELECT NOW() AS current_time;');
+try {
+    const res = await pool.query('SELECT NOW() AS current_time;');
 
-console.log(res.rows);
+    console.log(res.rows);
+
+    
+} catch (error) {
+    console.log(error)
+    
+} finally {
+    await pool.end()
+}
