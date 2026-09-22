@@ -1,6 +1,6 @@
 import express from 'express'
 
-const App = () => {
+const createApp = () => {
 
     const app = express();
     
@@ -16,4 +16,4 @@ const App = () => {
 
 };
 
-export default App;
+export default createApp;
