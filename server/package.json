@@ -8,9 +8,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "node --watch server.js",
-    "build": "tsc",
-    "start": "node dist/server.js",
-    "typecheck": "tsc --noEmit",
+    "start": "node server.js",
     "db:clear": "prisma db execute --file ../database/seeds/00_reset_data.sql",
     "db:seed:references": "prisma db execute --file ../database/seeds/01_reference_data.sql",
     "db:seed:users": "prisma db execute --file ../database/seeds/02_users_employees.sql",
@@ -22,25 +20,15 @@
     "test:run": "vitest run"
   },
   "dependencies": {
-    "@fastify/cookie": "^11.1.2",
-    "@fastify/cors": "^11.3.0",
-    "@fastify/jwt": "^10.2.2",
     "@prisma/adapter-pg": "^7.10.0",
     "@prisma/client": "^7.10.0",
-    "@types/bcrypt": "^6.0.0",
     "bcrypt": "^6.0.0",
     "dotenv": "^17.4.2",
     "express": "^5.2.1",
-    "fastify": "^5.12.4",
-    "fastify-plugin": "^6.0.0",
     "pg": "^8.23.0"
   },
   "devDependencies": {
-    "@types/node": "^26.5.1",
-    "@types/pg": "^8.23.1",
     "prisma": "^7.10.0",
-    "tsx": "^4.23.13",
-    "typescript": "^7.0.2",
     "vitest": "^5.0.1"
   }
 }

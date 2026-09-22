@@ -3,7 +3,7 @@ import dotenv from 'dotenv';
 
 dotenv.config()
 
-const PORT = Number(process.env.PORT ?? 3010);
+const PORT = Number(process.env.PORT ?? 3000);
 
 const app = createApp();
 
