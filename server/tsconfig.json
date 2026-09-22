@@ -45,6 +45,6 @@
     "forceConsistentCasingInFileNames": true
     
   },
-  "include": ["src/**/*.ts", "server.ts"],
+  "include": ["src/**/*.ts", "server.old.ts"],
   "exclude": ["node_modules", "dist"]
 }

@@ -1,5 +1,5 @@
 import type { FastifyInstance, FastifyServerOptions } from "fastify";
-import App from "./src/app.js";
+import App from "./src/app.old.js";
 
 const option: FastifyServerOptions = {
     logger: true
