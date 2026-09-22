@@ -1,12 +1,20 @@
 import AppLayout from "@/layouts/AppLayout.vue";
 import HomeView from "@/views/HomeView.vue";
 import NotFoundView from "@/views/NotFoundView.vue";
+import LoginView from "@/views/LoginView.vue";
 import { createRouter, createWebHistory } from "vue-router";
 
+const applicationName = "Harmonie Domicile"
 
 const router = createRouter({
     history: createWebHistory(),
     routes: [
+        {
+            path: '/login',
+            name: 'login',
+            component: LoginView,
+            meta: { title: 'Connexion' }
+        },
         {
             path: '/',
             component: AppLayout,
@@ -24,6 +32,12 @@ const router = createRouter({
             component: NotFoundView
         }
     ]
-})
+});
+
+router.afterEach((to) => {
+    const pageTitle = typeof to.meta.title === 'string' ? to.meta.title : null
+
+    document.title = pageTitle ? `${pageTitle} | ${applicationName}` : applicationName
+});
 
 export default router;
