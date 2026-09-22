@@ -1,5 +1,24 @@
 <script setup lang="ts">
-import { RouterLink, RouterView } from "vue-router";
+import { useAuth } from "@/composables/useAuth";
+import { logout } from "@/services/auth.service";
+import { RouterLink, RouterView, useRouter } from "vue-router";
+
+const router = useRouter();
+const { clearUser } = useAuth();
+
+async function handleLogout() {
+    try {
+        await logout();
+
+        clearUser();
+
+        router.push({ name: 'login' });
+        
+    } catch (error) {
+        console.log(error);
+    }
+}
+
 </script>
 
 <template>
@@ -15,6 +34,13 @@ import { RouterLink, RouterView } from "vue-router";
             <div class="app-user">
                 Utilisateur
             </div>
+
+            <button 
+                type="button"
+                @click="handleLogout"
+            >
+                Se déconnecter
+            </button>
         </header>
 
         <div class="app-body">
