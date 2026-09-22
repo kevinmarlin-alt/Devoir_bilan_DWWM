@@ -2,6 +2,7 @@ import fastify, { type FastifyServerOptions } from "fastify";
 import authRouter from "./routes/auth.route.js";
 import { registrerErrorHandler } from "./shared/error-handler.js";
 import fastifyJwt from "@fastify/jwt"
+import cors from '@fastify/cors'
 
 
 import { prisma } from "./plugings/prisma.plugin.js";
@@ -17,6 +18,10 @@ const App = (option: FastifyServerOptions) => {
         throw new Error("La variable d'environnement JWT_SECRET est obligatoire");
     }
     // PLugins de sécurité & authentification
+    app.register(cors, {
+        origin: 'http://localhost:5173',
+        credentials: true
+    })
     app.register(fastifyCookie)
     app.register(fastifyJwt, { 
         secret: jwtSecret,
