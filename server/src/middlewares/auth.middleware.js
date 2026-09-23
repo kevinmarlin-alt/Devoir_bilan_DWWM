@@ -1,12 +1,15 @@
 import jwt from 'jsonwebtoken';
+import { AppError } from '../shared/app-error';
 
 export const authenticate = (req, res, next) => {
     const hd_token = req.cookies.hd_token;
 
     if(!hd_token) {
-        return res.status(401).send({
-            message: 'Echec de l\'authentification'
-        })
+        throw new AppError(
+            'Authentification requise',
+            401,
+            'UNAUTHORIZED'
+        )
     }
 
     try {
@@ -21,6 +24,10 @@ export const authenticate = (req, res, next) => {
 
         
     } catch (error) {
-        next(error);
+        throw new AppError(
+            'Authentification invalide',
+            401,
+            'UNAUTHORIZED'
+        );
     }
 };

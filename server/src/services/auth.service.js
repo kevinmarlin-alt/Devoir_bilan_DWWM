@@ -1,37 +1,46 @@
 import { findRolesByUserId, findUserByEmail } from '../repositories/user.repository.js'
 import bcrypt from 'bcrypt'
+import { AppError } from '../shared/app-error.js';
 
 export const authenticateUser = async (email, password) => {
     const user = await findUserByEmail(email);
 
     if(!user) {
-        throw new Error(
-            'Identifiants incorrects'
-        )
+        throw new AppError(
+            'Identifiants incorrects',
+            401,
+            'INVALID_CREDENTIALS'
+        );
     }
 
     const isActived = user.isActive;
 
     if(!isActived) {
-        throw new Error(
-            'Identifiants incorrects'
-        )
+        throw new AppError(
+            'Identifiants incorrects',
+            401,
+            'INVALID_CREDENTIALS'
+        );
     }
 
     const passwordMatch = await bcrypt.compare(password, user.passwordHash);
 
     if(!passwordMatch) {
-        throw new Error(
-            'Identifiants incorrects'
-        )
+        throw new AppError(
+            'Identifiants incorrects',
+            401,
+            'INVALID_CREDENTIALS'
+        );
     }
 
     const roles = await findRolesByUserId(user.userAccountId);
 
     if(roles.length === 0) {
-        throw new Error(
-            "Aucun rôle applicatif n'est associé à ce compte"
-        )
+        throw new AppError(
+            "Aucun rôle applicatif n'est associé à ce compte",
+            403,
+            'NO_APPLICATION_ROLE'
+        );
     }
 
     return {
