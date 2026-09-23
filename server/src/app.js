@@ -1,6 +1,7 @@
 import express from 'express'
 import cookieParser from 'cookie-parser';
 import authRouter from './routes/auth.route.js';
+import { errorHandler } from './shared/error-handler.js';
 
 const createApp = () => {
 
@@ -17,6 +18,8 @@ const createApp = () => {
             status: "ok"
         })
     })
+
+    app.use(errorHandler);
 
     return app;
 
