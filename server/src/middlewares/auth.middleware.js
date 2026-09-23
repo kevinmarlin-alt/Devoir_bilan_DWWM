@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken';
-import { AppError } from '../shared/app-error';
+import { AppError } from '../shared/app-error.js';
 
 export const authenticate = (req, res, next) => {
     const hd_token = req.cookies.hd_token;

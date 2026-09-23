@@ -3,7 +3,9 @@ import bcrypt from 'bcrypt'
 import { AppError } from '../shared/app-error.js';
 
 export const authenticateUser = async (email, password) => {
-    const user = await findUserByEmail(email);
+    const normalizedEmail = email.trim().toLowerCase();
+    
+    const user = await findUserByEmail(normalizedEmail);
 
     if(!user) {
         throw new AppError(
