@@ -1,4 +1,4 @@
-import { describe, expect, it, vi } from 'vitest';
+import { beforeAll, beforeEach, describe, expect, it, vi } from 'vitest';
 import bcrypt from 'bcrypt';
 import { authenticateUser } from '../../../src/services/auth.service.js';
 import { findUserByEmail } from '../../../src/repositories/user.repository.js';
@@ -16,6 +16,10 @@ vi.mock('bcrypt', () => ({
 }));
 
 describe('authenticateUser', () => {
+
+    beforeEach(() => {
+        vi.clearAllMocks();
+    })
 
     it("refuse l'authentification si l'utilisateur n'existe pas", async () => {
 
@@ -92,7 +96,7 @@ describe('authenticateUser', () => {
                 'inconnu@harmonie.test',
                 'password'
             )
-        ).toMatchObject({
+        ).toEqual({
             userAccountId: 1,
             email: 'inconnu@harmonie.test',
             isActive: true

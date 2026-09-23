@@ -1,14 +1,12 @@
-import { afterAll, describe, expect, it } from "vitest";
-import { findUserByEmail } from "../../../src/repositories/user.repository.js";
+import { afterAll, assert, describe, expect, it } from "vitest";
+import { findUserByEmail, findRolesByUserId } from "../../../src/repositories/user.repository.js";
 import pool from "../../../src/database/database.js";
 
 describe('User repositories', () => {
 
-
     afterAll(async () => {
         await pool.end()
     })
-
 
     it('retourne un utilisateur si l\'adresse e-mail est correcte', async () => {
         const response = await findUserByEmail('alice.martin@harmonie.test');
@@ -31,5 +29,23 @@ describe('User repositories', () => {
         const response = await findUserByEmail('unknow@harmonie.test');
 
         expect(response).toBeNull();
+    })
+})
+
+describe('User roles', () => {
+
+    afterAll(async () => {
+        await pool.end()
+    })
+
+    it('retourne la liste du ou des roles d\'un utilisateur', async () => {
+        const roles = await findRolesByUserId(5);
+        assert.isArray(roles);
+    })
+
+    it('retourne un tableau vide si l\identifiant est inconnu', async () => {
+        const roles = await findRolesByUserId(5);
+        assert.isArray(roles);
+        assert(roles).length(0)
     })
 })
