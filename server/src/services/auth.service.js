@@ -1,11 +1,12 @@
 import { findUserByEmail } from '../repositories/user.repository.js'
 import bcrypt from 'bcrypt'
-const authentificateUser = async (email, password) => {
+
+export const authenticateUser = async (email, password) => {
     const user = await findUserByEmail(email);
 
     if(!user) {
         throw new Error(
-            'Identifiants incorrect'
+            'Identifiants incorrects'
         )
     }
 
@@ -13,7 +14,7 @@ const authentificateUser = async (email, password) => {
 
     if(!isActived) {
         throw new Error(
-            'Le compte utilisateur n\'est plus actif'
+            'Identifiants incorrects'
         )
     }
 
@@ -21,14 +22,18 @@ const authentificateUser = async (email, password) => {
 
     if(!passwordMatch) {
         throw new Error(
-            'Identifiants incorrect'
+            'Identifiants incorrects'
         )
     }
-    
-    return user;
+
+    return {
+        userAccountId: user.userAccountId,
+        email: user.email,
+        isActive: user.isActive
+    };
 
 }
 
 export default {
-    authentificateUser
+    authenticateUser
 }
