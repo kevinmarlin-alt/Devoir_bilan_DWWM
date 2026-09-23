@@ -1,4 +1,4 @@
-import { beforeAll, beforeEach, describe, expect, it, vi } from 'vitest';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 import bcrypt from 'bcrypt';
 import { authenticateUser } from '../../../src/services/auth.service.js';
 import { findUserByEmail } from '../../../src/repositories/user.repository.js';

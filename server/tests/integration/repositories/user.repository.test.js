@@ -2,11 +2,11 @@ import { afterAll, assert, describe, expect, it } from "vitest";
 import { findUserByEmail, findRolesByUserId } from "../../../src/repositories/user.repository.js";
 import pool from "../../../src/database/database.js";
 
-describe('User repositories', () => {
+afterAll(async () => {
+    await pool.end()
+})
 
-    afterAll(async () => {
-        await pool.end()
-    })
+describe('User repositories', () => {
 
     it('retourne un utilisateur si l\'adresse e-mail est correcte', async () => {
         const response = await findUserByEmail('alice.martin@harmonie.test');
@@ -34,18 +34,20 @@ describe('User repositories', () => {
 
 describe('User roles', () => {
 
-    afterAll(async () => {
-        await pool.end()
-    })
-
     it('retourne la liste du ou des roles d\'un utilisateur', async () => {
         const roles = await findRolesByUserId(5);
-        assert.isArray(roles);
+        
+        expect(roles).toHaveLength(2);
+        expect(roles).toEqual(
+            expect.arrayContaining([
+                'sector_manager',
+                'coordinator'
+            ])
+        )
     })
 
     it('retourne un tableau vide si l\identifiant est inconnu', async () => {
-        const roles = await findRolesByUserId(5);
-        assert.isArray(roles);
-        assert(roles).length(0)
+        const roles = await findRolesByUserId(9999999);
+        expect(roles).toEqual([]);
     })
 })
