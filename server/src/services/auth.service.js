@@ -1,4 +1,4 @@
-import { findUserByEmail } from '../repositories/user.repository.js'
+import { findRolesByUserId, findUserByEmail } from '../repositories/user.repository.js'
 import bcrypt from 'bcrypt'
 
 export const authenticateUser = async (email, password) => {
@@ -26,10 +26,18 @@ export const authenticateUser = async (email, password) => {
         )
     }
 
+    const roles = await findRolesByUserId(user.userAccountId);
+
+    if(roles.length === 0) {
+        throw new Error(
+            "L'utilisateur ne dispoe pas de role(s)"
+        )
+    }
+
     return {
         userAccountId: user.userAccountId,
         email: user.email,
-        isActive: user.isActive
+        roles: roles
     };
 
 }
