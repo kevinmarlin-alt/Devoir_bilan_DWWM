@@ -31,3 +31,23 @@ export const authenticate = (req, res, next) => {
         );
     }
 };
+
+export const authorize = (...allowedRoles) => {
+    return async (req, res, next) => {
+        const userRoles = req.user.roles;
+        
+        const hasAccess = userRoles.some(
+            (role) => allowedRoles.includes(role)
+        );
+
+        if(!hasAccess) {
+            throw new AppError(
+                'Accès interdit',
+                403,
+                'FORBIDDEN'
+            );
+        }
+
+        next();
+    };
+};
