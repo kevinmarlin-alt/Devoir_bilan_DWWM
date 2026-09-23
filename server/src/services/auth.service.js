@@ -30,7 +30,7 @@ export const authenticateUser = async (email, password) => {
 
     if(roles.length === 0) {
         throw new Error(
-            "L'utilisateur ne dispoe pas de role(s)"
+            "Aucun rôle applicatif n'est associé à ce compte"
         )
     }
 

@@ -1,4 +1,4 @@
-import { afterAll, assert, describe, expect, it } from "vitest";
+import { afterAll, beforeAll, describe, expect, it } from 'vitest';
 import { findUserByEmail, findRolesByUserId } from "../../../src/repositories/user.repository.js";
 import pool from "../../../src/database/database.js";
 
