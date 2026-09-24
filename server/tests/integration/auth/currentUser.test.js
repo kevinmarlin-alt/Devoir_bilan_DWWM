@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import createApp from '../../../src/app';
+import createApp from '../../../src/app.js';
 import cookieParser from 'cookie-parser';
 import request from 'supertest';
 import jwt from 'jsonwebtoken';

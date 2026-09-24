@@ -26,10 +26,11 @@ export const handleLogin = async (req, res, next) => {
 };
 
 export const handleCurrentUser = (req, res, next) => {
-    const { email, roles } = req.user;
+    const { email, roles, userAccountId } = req.user;
 
     res.status(200).send({
         user: {
+            userAccountId,
             email,
             roles
         }
@@ -38,15 +39,13 @@ export const handleCurrentUser = (req, res, next) => {
 };
 
 export const handleLogout = (req, res, next) => {
-    const hasToken = req.headers.cookie;
     res.clearCookie('hd_token', {
         httpOnly: true,
         secure: process.env.NODE_ENV === 'production',
         sameSite: 'strict',
         path: '/'
     })
-    res.status(204).send('Cookie supprimé')
-    //res.clearCookie('hd_token')
+    res.status(204).send()
 }
 
 export default {

@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import createApp from '../../../src/app';
+import createApp from '../../../src/app.js';
 import cookieParser from 'cookie-parser';
 import request from 'supertest';
 
@@ -18,6 +18,10 @@ describe('POST /api/auth/logout', () => {
         const sessionCookie = cookies.find(cookie => cookie.startsWith('hd_token='))
 
         expect(sessionCookie).toBeDefined()
+        expect(sessionCookie).toMatch(/^hd_token=;/);
+        expect(sessionCookie).toContain('Path=/');
+        expect(sessionCookie).toContain('HttpOnly');
+        expect(sessionCookie).toMatch(/SameSite=Strict/i);
         expect(response.status).toBe(204)
     })
 })
