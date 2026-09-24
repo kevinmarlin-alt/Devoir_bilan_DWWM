@@ -7,6 +7,7 @@ import CoordinatorDashboardView from '@/views/coordinator/CoordinatorDashboardVi
 import ManagerDashboardView from '@/views/sector_manager/ManagerDashboardView.vue';
 import AdminDashboardView from '@/views/amdin/AdminDashboardView.vue';
 import { useAuth } from '@/composables/useAuth.js';
+import {getDashboardRouteName} from './role-route.js'
 
 const applicationName = 'Harmonie Domicile';
 
@@ -92,9 +93,7 @@ const router = createRouter({
 const { initializeAuth } = useAuth();
 
 router.beforeEach(async (to) => {
-    const user = await initializeAuth()
-    //console.log('beforeEach:', user, to.meta.requiresAuth)
-    
+    const user = await initializeAuth();    
 
     if (to.meta.requiresAuth && !user) {
         return {
@@ -105,16 +104,14 @@ router.beforeEach(async (to) => {
 
     const allowedRoles = to.meta.roles;
 
-    //console.log('beforeEach - allowedRoles:', allowedRoles)
-
     if(allowedRoles) {
         const hasAccess = user?.roles.some(
             role => allowedRoles.includes(role)
         );
-        //console.log('beforeEach - hasAccess:', hasAccess)
 
         if(!hasAccess) {
-            return { name: 'login' };
+            const dashboardRouteName = getDashboardRouteName(user.roles)
+            return { name: dashboardRouteName };
         }
     }
 
