@@ -25,6 +25,7 @@ describe('GET /api/auth/user', () => {
 
     it('retourne le status 200 si token valide', async () => {
         const user = {
+            userAccountId: 1,
             email: 'admin@harmonie.test',
             roles: ['admin']
         }
