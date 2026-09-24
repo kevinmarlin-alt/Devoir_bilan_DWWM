@@ -1,0 +1,22 @@
+import { describe, expect, it } from 'vitest';
+import createApp from '../../../src/app.js';
+import request from 'supertest';
+
+const app = createApp();
+
+describe('POST /api/auth/logout', () => {
+    it('retourne status 204 lorsque le cookie est supprimé', async () => {
+        const response = await request(app)
+            .post('/api/auth/logout');
+
+        const cookies = response.headers['set-cookie'];
+        const sessionCookie = cookies.find(cookie => cookie.startsWith('hd_token='))
+
+        expect(sessionCookie).toBeDefined()
+        expect(sessionCookie).toMatch(/^hd_token=;/);
+        expect(sessionCookie).toContain('Path=/');
+        expect(sessionCookie).toContain('HttpOnly');
+        expect(sessionCookie).toMatch(/SameSite=Strict/i);
+        expect(response.status).toBe(204)
+    })
+})
