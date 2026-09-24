@@ -1,18 +1,17 @@
 import { API_URL } from '@/config/api';
-import type { AuthUser, LoginCredentials } from '@/types/auth.type';
 
 
 export class AuthError extends Error {
     constructor(
-        public status: number,
-        message: string
+        status,
+        message
     ) {
         super(message);
         this.name = 'AuthError'
     }
 }
 
-export const login = async (credentials: LoginCredentials): Promise<AuthUser> => {
+export const login = async (credentials) => {
     const response = await fetch(`${API_URL}/api/auth/login`, {
         method: 'POST',
         credentials: 'include',
@@ -48,7 +47,7 @@ export const login = async (credentials: LoginCredentials): Promise<AuthUser> =>
     return data.user;
 };
 
-export const logout = async (): Promise<void> => {
+export const logout = async () => {
     const response = await fetch(`${API_URL}/api/auth/logout`, {
         method: 'POST',
         credentials: 'include'
@@ -62,7 +61,7 @@ export const logout = async (): Promise<void> => {
     }
 };
 
-export const getAuthenticatedUser = async (): Promise<AuthUser | null> => {
+export const getAuthenticatedUser = async () => {
         const response = await fetch(`${API_URL}/api/auth/user`, {
             method: 'GET',
             credentials: 'include'

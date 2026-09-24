@@ -1,6 +1,6 @@
-<script setup lang="ts">
-import { useAuth } from "@/composables/useAuth";
-import { logout } from "@/services/auth.service";
+<script setup>
+import { useAuth } from "@/composables/useAuth.js";
+import { logout } from "@/services/auth.service.js";
 import { RouterLink, RouterView, useRouter } from "vue-router";
 
 const router = useRouter();

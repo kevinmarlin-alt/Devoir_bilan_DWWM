@@ -6,17 +6,9 @@ import EmployeeDashboardView from '@/views/employee/EmployeeDashboardView.vue';
 import CoordinatorDashboardView from '@/views/coordinator/CoordinatorDashboardView.vue';
 import ManagerDashboardView from '@/views/sector_manager/ManagerDashboardView.vue';
 import AdminDashboardView from '@/views/amdin/AdminDashboardView.vue';
-import type { Role } from '@/types/auth.type';
-import { useAuth } from '@/composables/useAuth';
+import { useAuth } from '@/composables/useAuth.js';
 
 const applicationName = 'Harmonie Domicile';
-
-const dashboardRouteRole: Record<Role, string> = {
-    employee: 'employee-dashboard',
-    coordinator: 'coordinator-dashboard',
-    sector_manager: 'sector-manager-dashboard',
-    admin: 'admin-dashboard',
-}
 
 const router = createRouter({
     history: createWebHistory(),
@@ -111,7 +103,7 @@ router.beforeEach(async (to) => {
         }
     }
 
-    const allowedRoles = to.meta.roles as Role[] | undefined;
+    const allowedRoles = to.meta.roles;
 
     //console.log('beforeEach - allowedRoles:', allowedRoles)
 
