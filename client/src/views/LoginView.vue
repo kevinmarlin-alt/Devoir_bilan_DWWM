@@ -1,4 +1,4 @@
-<script lang="ts" setup>
+<script setup>
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { AuthError, login } from '@/services/auth.service';
@@ -9,10 +9,10 @@ const router = useRouter()
 
 const { setUser } = useAuth();
 
-const loginError = ref<string | null>(null);
+const loginError = ref(null);
 const isSubmitting = ref(false);
 
-async function handleSubmit (e: Event) {
+async function handleSubmit (e) {
     e.preventDefault();
 
     if(isSubmitting.value) {
@@ -22,7 +22,7 @@ async function handleSubmit (e: Event) {
     loginError.value = null;
     isSubmitting.value = true;
 
-    const form = e.currentTarget as HTMLFormElement;
+    const form = e.currentTarget;
     const data = new FormData(form);
 
     const credentials = {

@@ -1,12 +1,11 @@
-import { getAuthenticatedUser } from "@/services/auth.service";
-import type { AuthUser } from "@/types/auth.type";
+import { getAuthenticatedUser } from "@/services/auth.service.js";
 import { ref } from "vue";
 
-const user = ref<AuthUser | null>(null);
+const user = ref(null);
 const initialized = ref(false);
 
 export function useAuth() {
-    async function initializeAuth(): Promise<AuthUser | null> {
+    async function initializeAuth() {
         if(initialized.value) {
             return user.value;
         }
@@ -17,7 +16,7 @@ export function useAuth() {
         return user.value;
     }
 
-    function setUser(authentificatedUser: AuthUser) {
+    function setUser(authentificatedUser) {
         user.value = authentificatedUser;
         initialized.value = true;
     }
