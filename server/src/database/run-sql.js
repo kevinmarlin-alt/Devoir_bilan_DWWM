@@ -6,11 +6,11 @@ import pg from 'pg';
 
 const { Pool } = pg;
 
-const connectionString = process.env.DIRECT_URL;
+const connectionString = process.env.DATABASE_ADMIN_URL;
 
 if (!connectionString) {
     throw new Error(
-        "La variable DIRECT_URL est obligatoire"
+        "La variable DATABASE_ADMIN_URL est obligatoire"
     );
 }
 

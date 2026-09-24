@@ -26,7 +26,7 @@ const createApp = () => {
         })
     })
 
-    app.get('/health/database', async (req, res) => {
+    app.get('/health/database', async (req, res, next) => {
         try {
             await pool.query('SELECT 1')
             
