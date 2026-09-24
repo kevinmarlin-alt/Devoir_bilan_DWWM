@@ -9,7 +9,6 @@
   "scripts": {
     "dev": "node --watch server.js",
     "start": "node server.js",
-    "db:check": "node src/database/check-database.js",
     "db:clear": "node src/database/run-sql.js ../database/seeds/00_reset_data.sql",
     "db:seed:references": "node src/database/run-sql.js ../database/seeds/01_reference_data.sql",
     "db:seed:users": "node src/database/run-sql.js ../database/seeds/02_users_employees.sql",
