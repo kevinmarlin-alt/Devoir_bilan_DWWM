@@ -1,13 +1,10 @@
 import { describe, expect, it } from 'vitest';
 import createApp from '../../../src/app.js';
-import cookieParser from 'cookie-parser';
 import request from 'supertest';
 import jwt from 'jsonwebtoken';
 
 
 const app = createApp();
-
-app.use(cookieParser());
 
 
 describe('GET /api/auth/user', () => {
